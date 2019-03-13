@@ -1,8 +1,6 @@
 # Howareya
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/howareya`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome! This is the Howareya gem, its designed to connect to a howareya instance and post data to it
 
 ## Installation
 
@@ -22,7 +20,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create an initialiser file with the following block:
+
+```
+Howareya.configure do |config|
+  config.url = url
+  config.api_key = api_key
+end
+```
+
+Replacing url with the url of your instance and api_key with the key created for your app inside the instance
 
 ## Development
 
@@ -37,7 +44,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Howareya project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/howareya/blob/master/CODE_OF_CONDUCT.md).
