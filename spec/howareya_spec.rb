@@ -10,12 +10,20 @@ RSpec.describe Howareya do
   end
 
   it "can be setup with a url and an API key" do
-    Howareya.setup(url, api_key)
+    Howareya.configure do |config|
+      config.url = url
+      config.api_key = api_key
+    end
     expect(Howareya.details).to eq({ api_key: api_key, url: url})
   end
 
   context "when setup" do
-    before { Howareya.setup(url, api_key) }
+    before do
+      Howareya.configure do |config|
+        config.url = url
+        config.api_key = api_key
+      end
+    end
 
     it "calls out to httparty" do
       expect(HTTParty).to receive(:post) { double :response, code: 200 }
