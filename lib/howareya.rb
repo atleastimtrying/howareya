@@ -1,3 +1,4 @@
+require 'httparty'
 require "howareya/errors"
 require "howareya/configuration"
 require "howareya/version"
