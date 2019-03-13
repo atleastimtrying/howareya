@@ -27,7 +27,7 @@ RSpec.describe Howareya do
       it "raises an error" do
         expect {
           Howareya.record_metric("Foo", 123)
-        }.to raise_error(HowareyaBadAPIKeyError)
+        }.to raise_error(Howareya::BadAPIKeyError)
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe Howareya do
       it "raises an error" do
         expect {
           Howareya.record_metric("Foo", 123)
-        }.to raise_error(HowareyaMissingMetricError)
+        }.to raise_error(Howareya::MissingMetricError)
       end
     end
 
