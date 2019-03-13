@@ -20,7 +20,7 @@ module Howareya
   end
 
   def self.record_metric key, value
-    response = HTTParty.post(@configuration.url, :body => { :api_key => @configuration.api_key, 
+    response = ::HTTParty.post(@configuration.url, :body => { :api_key => @configuration.api_key, 
                                               :key => key, 
                                               :value => value })
     raise Howareya::MissingMetricError if response.code === 404
