@@ -6,6 +6,11 @@ module Howareya
       @api_key = nil
       @url = nil
     end
+
+    def reset
+      @api_key = nil
+      @url = nil
+    end
   end
 end
 

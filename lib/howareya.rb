@@ -20,7 +20,12 @@ module Howareya
     { api_key: @configuration.api_key, url: @configuration.url}
   end
 
+  def self.reset_configuration
+    @configuration.reset
+  end
+
   def self.record_metric key, value
+    raise Howareya::MissingConfigError unless @configuration.url && @configuration.api_key
     response = ::HTTParty.post(@configuration.url, :body => { :api_key => @configuration.api_key, 
                                               :key => key, 
                                               :value => value })

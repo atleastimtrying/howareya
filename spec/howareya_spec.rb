@@ -17,6 +17,15 @@ RSpec.describe Howareya do
     expect(Howareya.details).to eq({ api_key: api_key, url: url})
   end
 
+  it "can have it's config reset" do
+    Howareya.configure do |config|
+      config.url = url
+      config.api_key = api_key
+    end
+    Howareya.reset_configuration
+    expect(Howareya.details).to eq({ api_key: nil, url: nil})
+  end
+
   context "when setup" do
     before do
       Howareya.configure do |config|
@@ -46,6 +55,18 @@ RSpec.describe Howareya do
           Howareya.record_metric("Foo", 123)
         }.to raise_error(Howareya::MissingMetricError)
       end
+    end
+  end
+
+  context "without setup" do
+
+    before { Howareya.reset_configuration }
+
+    it "raises an error" do
+      allow(HTTParty).to receive(:post) { double :response, code: 200 }
+      expect {
+        Howareya.record_metric("Foo", 123)
+      }.to raise_error(Howareya::MissingConfigError)
     end
 
   end
